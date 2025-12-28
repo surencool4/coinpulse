@@ -1,7 +1,7 @@
 'use client';
-import {Image} from "next/dist/client/image-component";
-import Link from "next/dist/client/link";
-import {usePathname} from "next/dist/client/components/navigation";
+import Image from "next/image";
+import Link from "next/link";
+import {usePathname} from "next/navigation";
 import {cn} from "@/lib/utils";
 
 const Header = () => {
