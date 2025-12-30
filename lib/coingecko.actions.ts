@@ -1,4 +1,5 @@
 "use server";
+
 import qs from "query-string";
 
 const BASE_URL = process.env.COINGECKO_BASE_URL;
@@ -22,7 +23,7 @@ export async function fetcher<T>(
 
   const response = await fetch(url, {
     headers: {
-      x_cg_pro_api_key: API_KEY,
+      "x-cg-demo-api-key": API_KEY,
       "Content-Type": "application/json",
     } as Record<string, string>,
     next: { revalidate },
@@ -34,7 +35,7 @@ export async function fetcher<T>(
       .catch(() => ({}));
 
     throw new Error(
-      `Api Error ${response.status}: ${errorBody.error} || ${response.statusText}`,
+      `API Error: ${response.status}: ${errorBody.error || response.statusText} `,
     );
   }
 

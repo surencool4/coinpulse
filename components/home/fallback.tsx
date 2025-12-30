@@ -1,7 +1,8 @@
-import DataTable from "@/components/DataTable";
 import React from "react";
+import DataTable from "@/components/DataTable";
+import { cn } from "@/lib/utils";
 
-export const CoinOverViewFallback = () => {
+export const CoinOverviewFallback = () => {
   return (
     <div id="coin-overview-fallback">
       <div className="header pt-2">
@@ -23,7 +24,7 @@ export const TrendingCoinsFallback = () => {
     {
       header: "Name",
       cell: () => (
-        <div className="nav-link">
+        <div className="name-link">
           <div className="name-image skeleton" />
           <div className="name-line skeleton" />
         </div>
@@ -32,37 +33,83 @@ export const TrendingCoinsFallback = () => {
     {
       header: "24h Change",
       cell: () => (
-        <div className="nav-link">
-          <div className="name-image skeleton" />
-          <div className="name-line skeleton" />
+        <div className="price-change">
+          <div className="change-icon skeleton" />
+          <div className="change-line skeleton" />
         </div>
       ),
     },
     {
       header: "Price",
-      cell: () => (
-        <div className="nav-link">
-          <div className="name-image skeleton" />
-          <div className="name-line skeleton" />
-        </div>
-      ),
+      cell: () => <div className="price-line skeleton" />,
     },
   ];
 
-  const skeletonData = Array.from({ length: 6 }, (_, index) => ({
-    id: index,
-  }));
+  const dummyData = Array.from({ length: 6 }, (_, i) => ({ id: i }));
 
   return (
-    <div id="trending-coins">
+    <div id="trending-coins-fallback">
       <h4>Trending Coins</h4>
       <DataTable
-        data={skeletonData}
-        columns={columns}
-        rowKey={(row) => row.id}
-        tableClassName="trend-coins-table"
-        headerCellClassName="py-3!"
-        bodyCellClassName="py-2!"
+        data={dummyData}
+        columns={columns as any}
+        rowKey={(item: any) => item.id}
+        tableClassName="trending-coins-table"
+      />
+    </div>
+  );
+};
+
+export const CategoriesFallback = () => {
+  const columns = [
+    {
+      header: "Category",
+      cellClassName: "category-cell",
+      cell: () => <div className="category-line skeleton" />,
+    },
+    {
+      header: "Top Gainers",
+      cellClassName: "top-gainers-cell",
+      cell: () => (
+        <div className="flex gap-1">
+          <div className="gainer-image skeleton" />
+          <div className="gainer-image skeleton" />
+          <div className="gainer-image skeleton" />
+        </div>
+      ),
+    },
+    {
+      header: "24h Change",
+      cellClassName: "change-header-cell",
+      cell: () => (
+        <div className="change-cell">
+          <div className="change-icon skeleton" />
+          <div className="change-line skeleton" />
+        </div>
+      ),
+    },
+    {
+      header: "Market Cap",
+      cellClassName: "market-cap-cell",
+      cell: () => <div className="value-skeleton-lg skeleton" />,
+    },
+    {
+      header: "24h Volume",
+      cellClassName: "volume-cell",
+      cell: () => <div className="value-skeleton-md skeleton" />,
+    },
+  ];
+
+  const dummyData = Array.from({ length: 10 }, (_, i) => ({ id: i }));
+
+  return (
+    <div id="categories-fallback">
+      <h4>Top Categories</h4>
+      <DataTable
+        data={dummyData}
+        columns={columns as any}
+        rowKey={(item: any) => item.id}
+        tableClassName="mt-3"
       />
     </div>
   );
