@@ -8,6 +8,61 @@ const API_KEY = process.env.COINGECKO_API_KEY;
 if (!BASE_URL) throw new Error("Could not get base url");
 if (!API_KEY) throw new Error("Could not get api key");
 
+const SEARCH_LIMIT = 10;
+
+export async function searchCoins(query: string): Promise<SearchCoin[]> {
+  if (!query) return [];
+
+  try {
+    const searchData = await fetcher<{
+      coins: {
+        id: string;
+        name: string;
+        symbol: string;
+        thumb: string;
+      }[];
+    }>("search", { query }, 30);
+
+    const coins = searchData.coins?.slice(0, SEARCH_LIMIT) ?? [];
+    if (coins.length === 0) return [];
+
+    const ids = coins.map((coin) => coin.id).join(",");
+
+    const marketData = await fetcher<
+      {
+        id: string;
+        current_price: number;
+        price_change_percentage_24h: number | null;
+      }[]
+    >(
+      "coins/markets",
+      {
+        vs_currency: "usd",
+        ids,
+        price_change_percentage: "24h",
+      },
+      30,
+    );
+
+    const marketMap = new Map(marketData.map((coin) => [coin.id, coin]));
+
+    return coins.map((coin) => {
+      const market = marketMap.get(coin.id);
+
+      return {
+        ...coin,
+        data: {
+          price: market?.current_price ?? 0,
+          price_change_percentage_24h: market?.price_change_percentage_24h ?? 0,
+        },
+      };
+    });
+  } catch (error) {
+    console.error("Coin search failed:", error);
+    return [];
+  }
+}
+
 export async function fetcher<T>(
   endpoint: string,
   params?: QueryParams,
