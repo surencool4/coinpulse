@@ -4,17 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1b4d90d7-a433-4515-ae23-04850a3af319" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/app/coins/[id]/page.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/components/CoinHeader.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/components/Converter.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/components/LiveDataWrapper.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/hooks/useCoinGeckoWebSocket.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/coingecko.actions.ts" beforeDir="false" afterPath="$PROJECT_DIR$/lib/coingecko.actions.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-    </list>
+    <list default="true" id="1b4d90d7-a433-4515-ae23-04850a3af319" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -94,7 +84,7 @@
       <workItem from="1766900427721" duration="19845000" />
       <workItem from="1766933594386" duration="118000" />
       <workItem from="1767079554427" duration="15267000" />
-      <workItem from="1767251226979" duration="9742000" />
+      <workItem from="1767251226979" duration="10021000" />
     </task>
     <servers />
   </component>
